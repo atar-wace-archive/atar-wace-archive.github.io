@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>WACE/ATAR examination archive</title>
+	<style>
+	html { margin:0; padding:0; font-size:62.5%; }
+	body { max-width:100%; min-width:300px; margin:0 auto; padding:20px 10px; font-size:14px; font-size:1.4em; }
+	h1 { font-size:1.8em; }
+	.tree { overflow:auto; border:1px solid silver; min-height:100px; }
+	</style>
+	<link rel="stylesheet" href="./dist/themes/default/style.min.css" />
+	<link rel="stylesheet" href="./main.css" />
+</head>
+<body>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> 
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="./dist/jstree.min.js"></script>
+
+	
+	
+	<h1>ATAR/WACE past examinations archive</h1>
+	<div class="mx-auto" style="margin: 1%;">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-subtitle">Welcome to the archive!</h4>
+				<p class="card-text">
+					Here you can find almost all papers from the WACE/ATAR system, including ones removed from the website.<br>
+					<a href="https://www.scsa.wa.edu.au/publications/past-atar-course-exams" class="card-link">Current SCSA ATAR archive</a><br>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="counter">
+		<img src="https://hitcounter.pythonanywhere.com/count/tag.svg?url=http%3A%2F%2Fatar-wace-archive.github.io%2F" alt="Hits">
+	</div>
+	
+	<div class="alert alert-warning" role="alert">
+		<p class="expand"><a href="#">⚠ A note on papers from the old system (pre-2016) ⚠</a> <img src="images/arrow.png" width="5" height="7" /></p>
+		<p class="content">
+			You must apply caution when using papers from the old system.<br>
+			If the course has remained similar today, the papers can be reused.<br>
+			It is not recommended to use papers in a course that has undergone large changes. At best, the individual questions may be used selectively<br>
+			Additionally, some subjects may have split into multiple subjects so you must check the other related subjects for past papers.<br>
+			Note that stage 3 papers are the most useful; stage 2 reflects a lower difficulty.<br>
+		</p>
+	</div>
+	
+	<div class="alert alert-warning" role="alert">
+		<p>
+			🚧 The site is currently under construction so some papers may not be available 🚧<br>
+			I still need to add 2011, as well as papers from the current system - but you can find current papers on the SCSA website anyways.<br>
+			A course bulk download button may be added in the future.
+		</p>
+	</div>
+
+	<div id="archive" class="tree"></div>
+
+	<div class="mx-auto" style="margin: 1%;">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-subtitle">Disclaimer</h5>
+				<p class="card-text">
+					All papers are copyright of SCSA or the Curriculum Council. <br>
+					This site is not associated with Internet Archive, SCSA or the Curriculum Council.<br>
+				</p>
+
+				<a href="https://github.com/atar-wace-archive/atar-wace-archive" class="card-link">Source code</a><br>
+			</div>
+		</div>
+	</div>
+	
+	<div id="dialog" title="⚠ File is not archived" width=50%>
+		<p>SCSA has removed the most of the examinations before the 2016 WACE redesign, and this file is not archived by the Wayback machine. It currently cannot be accessed.</p>
+		<p>I plan to set up a method of submitting lost files for the archive in the future.</p>
+	</div>
+
+	
+	<script>
+	// The warning collapsible
+	$('.expand').click(function(){
+		$('.content').slideToggle('slow');
+	});
+	$('.expand').nextUntil('tr.expand').hide();
+
+	// The unarchived warning
+	$("#dialog").dialog({
+		autoOpen: false,
+		show: { effect: "highlight", duration: 500 },
+		hide: { effect: "fade", duration: 500 },
+		width: "75%"
+	});
+
+	$('#archive').jstree({
+		'core' : {
+			'data' : {
+				"url" : "./root.json",
+				"dataType" : "json" // needed only if you do not supply JSON headers
+			}
+		},
+		"types" : {
+			"#" : {
+				"max_children" : 1,
+				"max_depth" : 4,
+				"valid_children" : ["root"]
+			},
+			"root" : {
+				"icon" : "/static/3.3.10/assets/images/tree_icon.png",
+				"valid_children" : ["default"]
+			},
+			"default" : {
+				"valid_children" : ["default","file"]
+			},
+			"pdf" : {
+				"icon" : "./icons/pdf.png",
+				"valid_children" : []
+			},
+			"mp3" : {
+				"icon" : "./icons/mp3.png",
+				"valid_children" : []
+			},
+			"mp4" : {
+				"icon" : "./icons/mp4.png",
+				"valid_children" : []
+			},
+			"error" : {
+				"icon" : "./icons/warn.png",
+				"valid_children" : []
+			},
+			"doc" : {
+				"icon" : "./icons/doc.png",
+				"valid_children" : []
+			}
+		},
+		"plugins" : ["contextmenu", "dnd", "search", "state", "types", "wholerow"]
+
+	}).bind("select_node.jstree", function (event, data) { 
+		switch (data.node.type) {
+			case "default":
+				break;
+			case "error":
+				$("#dialog").dialog("open");
+				break;
+			default:
+				window.open(data.node.original.url);
+				break;
+		};
+	});
+	
+	
+	$("#archive").on('click', '.jstree-anchor', function (e) { //Single click folders https://github.com/vakata/jstree/issues/953
+   		$('#archive').jstree(true).toggle_node(e.target);
+ 	}).jstree({
+    	core : {
+			dblclick_toggle : false,
+		}
+	});
+	</script>
+</body>
+</html>
