@@ -6,3 +6,9 @@ html {
     text-align: center;
     margin: 0.5rem;
 }
+
+.jstree-default .jstree-search {
+    color: #008cff;
+    font-weight: bold;
+    font-style: normal;
+}
