@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>WACE/ATAR examination archive</title>
+	<title>ATAR/WACE past examinations and papers archive</title>
 	<style>
 	html { margin:0; padding:0; font-size:62.5%; }
 	body { max-width:100%; min-width:300px; margin:0 auto; padding:20px 10px; font-size:14px; font-size:1.4em; }
@@ -12,16 +12,26 @@
 	<link rel="stylesheet" href="./dist/themes/default/style.min.css" />
 	<link rel="stylesheet" href="./main.css" />
 	<!-- SEO bs -->
+	<meta name="keywords" content="WACE, ATAR, SCSA, Curriculum, Curriculum Council, examinations, papers, exams, archive, 2016, github, study, practice, past, examinations, bash, curl, powershell, download">
+	<meta name="description" content="The most comprehensive free archive of past WACE exams for every ATAR subject, containing papers from early as 2006.">
+	<!-- Author tag? -->
 	<meta name="google-site-verification" content="YaD6KrNEcjeCiMnCyr8d89iDyJcvKqwfTe9z7zynN88" />
 </head>
 <body>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" />
+	<!-- <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" /> why the fck is this messing up my tooltip boxes with a fake shadow?????????????????????? -->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.1.0/jszip-utils.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.5.0/jszip.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="style.css" />
-	<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="./dist/jstree.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
 	
 	
@@ -32,7 +42,7 @@
 				<h4 class="card-subtitle">Welcome to the archive!</h4>
 				<p class="card-text">
 					Here you can find almost all papers from the WACE/ATAR system, including ones removed from the website.<br>
-					<a href="https://www.scsa.wa.edu.au/publications/past-atar-course-exams" class="card-link">Current SCSA ATAR archive</a><br>
+					<a href="https://www.scsa.wa.edu.au/publications/past-atar-course-exams" class="card-link" title="Current SCSA ATAR archive">Current SCSA ATAR archive</a><br>
 				</p>
 			</div>
 		</div>
@@ -43,25 +53,39 @@
 	</div>
 	
 	<div class="alert alert-warning" role="alert">
-		<p class="expand"><a href="#">⚠ A note on papers from the old system (pre-2016) ⚠</a> <img src="images/arrow.png" width="5" height="7" /></p>
+		<p class="expand text-center"><a href="#" title="Notice">⚠ A note on papers from the old system (pre-2016) ⚠</a></p>
 		<p class="content">
 			You must apply caution when using papers from the old system.<br>
-			If the course has remained similar today, the papers can be reused.<br>
+			If the course has remained similar today, the papers can be reused. For example, chemistry has some good questions useful today.<br>
 			It is not recommended to use papers in a course that has undergone large changes. At best, the individual questions may be used selectively<br>
-			Additionally, some subjects may have split into multiple subjects so you must check the other related subjects for past papers.<br>
-			Note that stage 3 papers are the most useful; stage 2 reflects a lower difficulty.<br>
+			Additionally, some subjects may have split into multiple subjects so you must check the other related subjects for past papers. For example, mathematics methods and applications existed under the mathematics course as different stages.<br>
+			Stage 3 papers are the most useful for most subjects because stage 2 reflects a lower difficulty.<br>
 		</p>
 	</div>
 	
-	<div class="alert alert-warning" role="alert">
+	<!-- <div class="alert alert-warning" role="alert">
 		<p>
 			🚧 The site is currently under construction so some papers may not be available 🚧<br>
 			I still need to add 2011, as well as papers from the current system - but you can find current papers on the SCSA website anyways.<br>
 			A course bulk download button may be added in the future.
 		</p>
+	</div> -->
+
+	<div class="text-center" style="width: 100%; margin:0em auto 1em auto; display:block; padding:4px; border-radius:4px; border:1px solid silver;">
+		Select some items to create a download command 
+		
+		<span class="tooltip-r" style="color:blue; border-bottom: 1px dotted black;" data-toggle="tooltip" data-placement="left" title="Copy and paste the code into a powershell or bash terminal. The files will be downloaded to the wace/ folder in the user directory&#013;&#013; I've tried to implement a direct bulk download on this page but CORS blocking is a thing, so I can't have a bulk download button without a CORS proxy, as the resources are hosted externally for copyright reasons.&#013;(CORS forbids cross-site requests unless these external hosts allow this domain in their policy, as far as I understand)">🛈</span><br>
+		  
+		<button type="button mx-auto" id="dl_ps" class="btn btn-primary" style="margin:5px;">
+			Create bulk download command (Powershell) 
+			<span class="tooltip-r" style="color:white; border-bottom: 1px dotted white;" data-toggle="tooltip" data-placement="left" aria-hidden="true" title="Use this option if you're on Windows">🛈</span><br>
+		</button>
+		<button type="button mx-auto" id="dl_bash" class="btn btn-success" style="margin:5px;">Create bulk download command (Bash and cURL)</button><br>
+		Or browse the archive and download items individually
 	</div>
 	
-	<input class="input" id="archive_q" style="width: 25%; margin:0em auto 1em auto; display:block; padding:4px; border-radius:4px; border:1px solid silver;" type="text" value=""; placeholder="🔍 Search">
+	<input class="input" id="archive_q" style="width: 40%; margin:0em auto 1em auto; display:block; padding:4px; border-radius:4px; border:1px solid silver;" type="text" value=""; placeholder="🔍 Search">
+
 	<div id="archive" class="tree"></div>
 
 	<div class="mx-auto" style="margin: 1%;">
@@ -72,19 +96,41 @@
 					All papers are copyright of SCSA or the Curriculum Council. <br>
 					This site is not associated with Internet Archive, SCSA or the Curriculum Council.<br>
 				</p>
-
-				<a href="https://github.com/atar-wace-archive/atar-wace-archive" class="card-link">Source code</a><br>
+				<a href="https://github.com/atar-wace-archive/atar-wace-archive" class="card-link" title="Github source">Source code</a><br>
 			</div>
 		</div>
 	</div>
 	
-	<div id="dialog" title="⚠ File is not archived" width=50%>
+	<div id="dialog" class="modal" role="alertdialog" title="⚠ File is not archived" width=50%>
 		<p>SCSA has removed the most of the examinations before the 2016 WACE redesign, and this file is not archived by the Wayback machine. It currently cannot be accessed.</p>
 		<p>I plan to set up a method of submitting lost files for the archive in the future.</p>
 	</div>
 
-	
+	<div id="cmd" class="modal-dialog-scrollable" title="Download command" role="document">
+		<div class="modal-content">
+			<div id="cmd_text" class="modal-body text-monospace text-break small">
+				<p>
+					command.
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button class="button cp btn btn-primary mx-auto" data-clipboard-action="copy" data-clipboard-target="#cmd_text">
+					📄 Copy all
+					<span class="tooltip-r" style="color:white; border-bottom: 1px dotted white;" data-toggle="tooltip" data-placement="left" aria-hidden="true" title="Copy and paste the code into a terminal and press enter.&#013;Scroll through and review the command for security purposes if you want to. Remember that you do not need elevated privileges for these commands.&#013;&#013;The files will be downloaded to the wace/ folder in the user directory (For example: C:/Users/JOE/wace/)">🛈</span><br>
+				</button>
+				<!-- <button type="button" id="dl" class="btn btn-primary mx-auto">⬇ Download</button> -->
+			</div>
+		</div>
+	</div>
+
 	<script>
+
+	$('.tooltip-r').tooltip({
+		tooltipClass: "tooltip-styling",
+		show: {duration: 200},
+		hide: {duration: 200}
+	});
+
 	// The warning collapsible
 	$('.expand').click(function(){
 		$('.content').slideToggle('slow');
@@ -99,7 +145,17 @@
 		width: "75%"
 	});
 
+	// The cmd dialog
+	$("#cmd").dialog({
+		autoOpen: false,
+		show: { effect: "highlight", duration: 500 },
+		hide: { effect: "fade", duration: 500 },
+		width: "90%",
+	});
+
 	$.jstree.defaults.search.show_only_matches = true;
+
+	var selected = []
 
 	$('#archive').jstree({
 		'core' : {
@@ -143,9 +199,15 @@
 				"valid_children" : []
 			}
 		},
-		"plugins" : ["search", "sort", "types", "wholerow"]
+		'checkbox': {
+            whole_node: false, 
+            tie_selection: false
+        },
+		"plugins" : ["search", "sort", "types", "wholerow", "checkbox"]
 
-	}).bind("select_node.jstree", function (event, data) { 
+	});
+	
+	$("#archive").bind("select_node.jstree", function (event, data) { 
 		switch (data.node.type) {
 			case "default":
 				break;
@@ -157,6 +219,29 @@
 				break;
 		};
 	});
+	$("#archive").bind("select_node.jstree", function (e, data) {
+		$(this).jstree('toggle_node', data.node);
+	});
+
+	$("#archive").on("check_node.jstree", function(e, data) {
+		selected = selected.concat(
+			[data.node.id].concat($("#archive").jstree(true).get_checked_descendants(data.node.id))
+		)
+		selected = [ ...new Set(selected) ] // Deduplicate
+	});
+	$("#archive").on("uncheck_node.jstree", function(e, data) {
+		const id = data.node.id
+		const removed = [id].concat($("#archive").jstree(true).get_node(id).children_d)
+		removed.forEach(element => {
+			const i = selected.indexOf(element);
+			if (i > -1) {
+				selected.splice(i, 1);
+			}
+		});
+	});
+	
+
+
 	
 	$(function () {
 		var to = false;
@@ -165,17 +250,80 @@
 			to = setTimeout(function () {
 				var v = $('#archive_q').val();
 				$('#archive').jstree(true).search(v);
-			}, 250);
+			}, 800);
 		});
 	});
-	
-	$("#archive").on('click', '.jstree-anchor', function (e) { //Single click folders https://github.com/vakata/jstree/issues/953
-   		$('#archive').jstree(true).toggle_node(e.target);
- 	}).jstree({
-    	core : {
-			dblclick_toggle : false,
+
+	function makeLinks() {
+		var path = [];
+		var urls = [];
+		// var selectedIndexes;
+		// selectedIndexes = $("#archive").jstree("get_selected", true);
+		// console.log(selectedIndexes);
+		jQuery.each(selected, function (index, value) {
+			// var base = selected[index].original
+			var base = $("#archive").jstree(true).get_node(selected[index]).original
+			var url = base.url;
+			if (url && base.type != "error") {
+				if (/\/[0-9]{14}\//.test(url)) {
+					url = url.replace(/(\/[0-9]{14})\//, "$1if_/"); // Seems like the links aren't as clean/consistent as i thought they were (Clean enough for site operation but not for these commands)
+					url = url.replace(/(\.org)(\/[0-9]{14})/, "$1/web$2");
+				}
+				urls.push(url);
+				path.push($('#archive').jstree().get_path(selected[index], '/'));
+			}
+		});
+		return [urls,path]
+	}
+
+	// console.log("url=['"+urls.join("','")+"'];path=['"+path.join("','")+"']");
+
+	$('#dl_ps').on('click', function(e){
+		const [urls,path] = makeLinks();
+		if (urls && urls.length > 0) {
+			const cmd = "mkdir ~/wace; $urls='"+urls.join("','")+"'; $out='"+path.join("','")+"'; for($i=0; $i -lt $urls.count; $i++) {  Echo ('GET '+$urls[$i]); Invoke-WebRequest -URI $urls[$i] -OutFile ( New-Item -Path ('./wace/'+$out[$i]) -Force ) }";
+			$("#cmd").find('.modal-body').text(cmd);
+			$("#cmd").dialog("open");
+		} else {
+			$("#cmd").find('.modal-body').text("#	You haven't selected any files or directories. Use the check mark and select stuff to download first!");
+			$("#cmd").dialog("open");
 		}
 	});
+	$('#dl_bash').on('click', function(e){
+		const [urls,path] = makeLinks();
+		if (urls && urls.length > 0) {
+			const cmd = "mkdir -p ~/wace; cd ./wace; urls=('"+urls.join("' '")+"'); out=('"+path.join("' '")+"'); i=0; for url in ${urls[@]}; do echo GET \"$url\"; curl -Ls --create-dirs \"$url\" -o \"${out[$i]}\"; ((i++)); done";
+			$("#cmd").find('.modal-body').text(cmd);
+			$("#cmd").dialog("open");
+		} else {
+			$("#cmd").find('.modal-body').text("#	You haven't selected any files or directories. Use the check mark and select stuff to download first!");
+			$("#cmd").dialog("open");
+		}
+	});
+
+	new ClipboardJS('.cp');
+
+	
+		// // Bulk zip does not work without a CORS proxy (which I cannot find a reliable one, nor do I think this site warrants the creation of a dedicated one).
+		// // https://gist.github.com/c4software/981661f1f826ad34c2a5dc11070add0f
+		// var zip = new JSZip();
+		// var count = 0;
+		// urls.forEach(function(url){
+		// 	// loading a file and add it in a zip file
+		// 	JSZipUtils.getBinaryContent("https://proxy/"+url, function (err, data) {
+		// 		if(err) {
+		// 			throw err; // or handle the error
+		// 		}
+		// 		zip.file(path[count], data, {binary:true});
+		// 		count++;
+		// 		if (count == urls.length) {
+		// 		zip.generateAsync({type:'blob'}).then(function(content) {
+		// 			saveAs(content, "WACE.zip");
+		// 		});
+		// 		}
+		// 	});
+		// });
+
 	</script>
 </body>
 </html>

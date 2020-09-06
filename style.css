@@ -12,3 +12,24 @@ html {
     font-weight: bold;
     font-style: normal;
 }
+
+.modal-dialog,
+.modal-content {
+    /* 80% of window height */
+    height: 80%;
+}
+
+.modal-body {
+    /* 100% = dialog height, 120px = header + footer */
+    max-height: calc(100vh - 210px);  
+    overflow-y: auto;
+}
+
+.ui-tooltip {
+    padding: 10px 10px;
+    border-radius: 10px;
+    max-width: 50%;
+    white-space: pre-line;
+    font: "Helvetica Neue", Sans-Serif;
+    box-shadow: none;
+}
