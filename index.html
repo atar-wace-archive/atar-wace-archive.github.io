@@ -1,12 +1,71 @@
-The atar-wace-archive is no longer operating as of 2022-08-21 due to a takedown notice.
+<!DOCTYPE html>
+<html lang="en">
 
-Thank you for the support for this website over the years.
-I made the site in June of 2020 because I felt like procrastinating by doing a programming project, and also wanted to get more practice papers for my exam revision.
-Turns out the project paid off especially for chemistry, where I got a very high mark. And people actually used it which is very surprising considering I did no marketing for the site, except for some basic SEO in Google's search console.
+<head>
+    <meta charset="UTF-8">
+    <title>📝 ATAR/WACE Past Papers and Exams Archive</title>
+</head>
 
-At least this means I no longer need to update the `root.json` file every year, finally can leave this jank mess of bash scripts, ruby and old JS frameworks in the past (Pro tip - don't use bash scripts with sed and grep for web parsing). This was really the only project from high-school that I occasionaly update, so I guess it's nice to finally tie up that part of my life and move on to other janky projects.
+<body>
+    [Views:
+    <div style="display: inline-block" id="visits"></div>
+    ]<br />
+    <script>
+        // Using key because I needed to set the view counter to 7800 (This was the value when the old counter broke)
+        fetch(
+            "https://api.countapi.xyz/hit/peterus/atar-wace-archive.github.io"
+        )
+            .then((res) => res.json())
+            .then(
+                (out) =>
+                    (document.getElementById("visits").textContent = out.value)
+            );
+    </script>
 
-I wish everyone the best in their ATAR exams and their future.
-Cringe inspirational text goes here.
+    <h2>Updates</h2>
 
-[2022-08-21T02:03]
+    <p>
+        The atar-wace-archive is no longer operating as of 2022-08-21 due to a
+        takedown request from the authority.
+    </p>
+
+    <p>
+        Thank you for the support for this website over the years.<br />
+        I made the site in June of 2020 because I felt like procrastinating by
+        doing a programming project, and also wanted to get more practice papers
+        for my exam revision.<br />
+        Turns out the project paid off especially for chemistry, where I got a
+        very high mark. And people actually used it which is very surprising
+        considering I did no marketing for the site, except for some basic SEO
+        in Google's search console.
+    </p>
+
+    <p>
+        At least this means I no longer need to update the `root.json` file
+        every year, finally can leave this jank mess of bash scripts, ruby and
+        old JS frameworks in the past (Pro tip - don't use bash scripts with sed
+        and grep for web parsing). This was really the only project from
+        high-school that I occasionaly update (It's 2022 and it's been 2 years
+        since end of HS and WACE for me), so I guess it's nice to finally tie up
+        that part of my life and move on to other janky electrical and computer
+        science projects at uni (Follow me on github!).
+    </p>
+
+    <p>
+        I wish everyone the best in their ATAR exams and their future.<br />
+        Cringe inspirational text goes here.
+    </p>
+
+    https://github.com/atar-wace-archive/atar-wace-archive.github.io<br />
+    <br />
+    We're done here<br />
+    <p>[2022-08-21T0203H]</p>
+    <br />
+    <p>
+        Personal update: WACE is done for me and I'm leaving with a cool ATAR of
+        99.25. Yesterday I've also been told I got my first preference through TISC.
+        Thank you to everyone who has helped me obtain the bread and achieve this
+        win.
+    </p>
+    <p>[2021-01-16T0042H]</p>
+</body>
